@@ -49,12 +49,12 @@ class Pool {
         '-–disable-gpu', // disable掉，比如GPU、Sandbox、插件等，减少内存的使用和相关计算
         '-–disable-dev-shm-usage', // 默认情况下，Docker运行一个/dev/shm共享内存空间为64MB 的容器。这通常对Chrome来说太小，并且会导致Chrome在渲染大页面时崩溃。要修复，必须运行容器 docker run --shm-size=1gb 以增加/dev/shm的容量。从Chrome 65开始，使用--disable-dev-shm-usage标志启动浏览器即可，这将会写入共享内存文件/tmp而不是/dev/shm.
         '-–disable-setuid-sandbox',
-        '-–no-first-run',
-        '-–no-zygote',
+        '-–no-first-run', // 跳过首次运行任务，无论它是否实际上是第一次运行。被kForceFirstRun覆盖。这不会丢弃FirstRun标记，因此不会阻止在下次没有此标志的情况下启动chrome时首次运行
+        '-–no-zygote', // 禁用使用zygote进程来分叉子进程。相反，子进程将被分叉并直接执行。请注意，-no-sandbox也应该与此标志一起使用，因为沙箱需要zygote才能工作。
       ],
       ignoreDefaultArgs: ['--disable-extensions', '--enable-automation',],
       defaultViewport: {
-        width: w || 750, // 页面宽度像素。不能超过1000px，会有崩溃的情况
+        width: w || 750, // 页面宽度像素
         height: h || 1400, // <number> 页面高度像素。
         isMobile: true, // 手机模式
       },
