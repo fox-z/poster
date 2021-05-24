@@ -1,0 +1,292 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .promote-wrap{
+        position: relative;
+        width: 750px;
+        height: 1334px;
+      }
+      .bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .time-box{
+        position: absolute;
+        top: 262px;
+        left: 0;
+        width: 100%;
+        height: 44px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #FFFFFF;
+      }
+
+      .goods-box{
+        position: absolute;
+        top: 426px;
+        left: 57px;
+        width: 636px;
+      }
+
+      .img-box{
+        width: 636px;
+        height: 414px;
+        box-shadow: 0px 4px 8px 0px #FFAD50;
+        border-radius: 24px;
+        overflow-y: hidden;
+        position: relative;
+      }
+      .img{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+      }
+      .tag {
+        height: 56px;
+        background: linear-gradient(180deg, #48E66A 0%, #13860E 100%);
+        border-radius: 22px 0px 24px 0px;
+        font-size: 28px;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 16px;
+      }
+      .tag2 {
+        height: 78px;
+        background: linear-gradient(180deg, #FDA816 0%, #FF0000 100%);
+        border-radius: 24px 0px 24px 0px;
+        font-size: 40px;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 58px;
+        padding: 0 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+      }
+      .title{
+        margin-top: 16px;
+        height: 88px;
+        font-size: 32px;
+        font-weight: bold;
+        color: #252525;
+        line-height: 44px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        word-break: break-all;
+        text-overflow: ellipsis;
+      }
+      .price-box{
+        margin-top: 10px;
+        
+      }
+      .old-price{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 44px 0 24px;
+        font-size: 24px;
+        color: rgba(37, 37, 37, 0.5);
+        line-height: 34px;
+      }
+      .lt-price{
+        text-align: left;
+      }
+      .rt-price{
+        text-align: right;
+      }
+      .prefer-price{
+        margin-top: 2px;
+      }
+      .act-price{
+        text-align: center;
+        color: #fff;
+        padding-right: 22px;
+        margin-top: -4px;
+      }
+      .act-tit{
+        font-size: 24px;
+        font-weight: bold;
+        color: #FFFFFF;
+        line-height: 34px;
+      }
+      .price{
+        margin-top: -8px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .pre{
+        margin-top: 18px;
+        font-size: 24px;
+        line-height: 34px;
+      }
+      .price-int{
+        font-size: 40px;
+        line-height: 58px;
+      }
+      .price-dot{
+        margin-top: 18px;
+        font-size: 24px;
+        line-height: 34px;
+      }
+      .yican-price-box {
+        margin-top: 58px;
+        height: 122px;
+        padding-right: 22px;
+      }
+      .yican-price {
+        color: #FF1626;
+        height: 122px;
+        position: relative;
+      }
+      .limit-tag {
+        font-size: 22px;
+        font-weight: 400;
+        color: #FFFFFF;
+        line-height: 32px;
+        height: 36px;
+        background: #FF4444;
+        border-radius: 14px 19px 19px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        position: absolute;
+        left: 0;
+        top: -4;
+        transform: translateY(-100%);
+      }
+      .yc-tit {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 48px;
+        position: absolute;
+        left: -40px;
+        bottom: 20px;
+        transform: translateX(-100%);
+        white-space: nowrap;
+      }
+      .yc-pre {
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 48px;
+        position: absolute;
+        left: 0;
+        transform: translateX(-100%);
+        bottom: 20px;
+      }
+      .yc-price-int {
+        font-size: 84px;
+        font-weight: 800;
+        color: #FF1626;
+        position: absolute;
+        line-height: 122px;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+      }
+      .yc-price-dot {
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 48px;
+        position: absolute;
+        right: 4px;
+        transform: translateX(100%);
+        bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="promote-wrap">
+      {% if type == 65 %}
+      <img class="bg" src="https://img1.huopin360.com/poster/group-bg-new.png" alt=" ">
+      {% elseif type == 77 %}
+      <img class="bg" src="https://img1.huopin360.com/poster/seckill-bg-new.png" alt=" ">
+      {% else %}
+      <img class="bg" src="https://img1.huopin360.com/poster/thousand-bg-new.png" alt=" ">
+      {% endif %}
+      <div class="time-box">{{startTime}}-{{endTime}}</div>
+      <div class="goods-box">
+        <div class="img-box">
+          <div class="img" style="background-image: url('{{img}}')"></div>
+          <!-- <div class="tag">限量{{activityStock}}份</div> -->
+          {% if type == 65 %}
+          <div class="tag2">{{grouponNum}}人成团</div>
+          {% endif %}
+        </div>
+        <div class="title">{{name}}</div>
+        <div class="price-box">
+          <div class="old-price">
+            <div class="lt-price">
+              <div>市场价</div>
+              <div class="prefer-price">¥{{marketPriceText}}</div>
+            </div>
+            <div class="rt-price">
+              <div>日常价</div>
+              <div class="prefer-price">¥{{preferPriceText}}</div>
+            </div>
+          </div>
+          <div class="act-price">
+            <div class="act-tit">立减</div>
+            
+            <div class="price">
+              <span class="pre">¥</span>
+              <span class="price-int">{{differenceTextInt}}</span>
+              {% if differenceTextDot %}
+              <span class="price-dot">.{{differenceTextDot}}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="yican-price-box">
+          <div class="yican-price">
+            <div class="yc-price-int">
+              {% if type == 65 %}
+                <div class="yc-tit">
+                  拼团价
+                </div>
+              {% elseif type == 77 %}
+                <div class="yc-tit">
+                  秒杀价
+                  {% if limitBuyFlag %}
+                  <div class="limit-tag">限购{{limitBuyNum}}件</div>
+                  {% endif %}
+                </div>
+                
+              {% else %}
+                <div class="yc-tit">
+                  万人团价
+                  {% if limitBuyFlag %}
+                  <div class="limit-tag">限购{{limitBuyNum}}件</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              <span class="yc-pre">¥</span>
+              {{activityPriceTextInt}}
+              {% if activityPriceTextDot %}
+              <span class="yc-price-dot">.{{activityPriceTextDot}}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

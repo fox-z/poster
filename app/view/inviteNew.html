@@ -1,0 +1,50 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .invite-new{
+        width: 640px;
+        height: 1048px;
+        background: url('https://img1.huopin360.com/miniprogram/groupBuying/cash-invt-poster-bg.png') center no-repeat;
+        background-size: 100% 100%;
+        overflow: hidden;
+      }
+      .invite-box{
+        margin-top: 258px;
+      }
+      .price-box{
+        display: flex;
+        justify-content: center;
+      }
+      .price{
+        font-size: 100px;
+        font-weight: bold;
+        color: #FF302E;
+        line-height: 144px;
+      }
+      .next{
+        margin-top: 60px;
+        font-size: 42px;
+        font-weight: bold;
+        color: #FF302E;
+        line-height: 60px;
+      }
+
+      .ewm{
+        display: block;
+        margin: 92px auto 0;
+        width: 310px;
+        height: 310px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invite-new">
+      <div class="invite-box">
+        <div class="price-box">
+          <div class="price">68</div>
+          <div class="next">元</div>
+        </div>
+        <img class="ewm" src="{{ewmBase64}}" alt=" ">
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

@@ -1,0 +1,52 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .code-wrap{
+        width: 750px;
+        height: 1084px;
+        background: url('http://bw-online-img.oss-cn-hangzhou.aliyuncs.com/miniprogram/orgainzer/promotion-code.png') center no-repeat;
+        background-size: 100% 100%;
+        overflow: hidden;
+      }
+      .avt{
+        display: block;
+        width: 124px;
+        height: 124px;
+        margin: 44px auto 0;
+        border-radius: 50%;
+      }
+      .site{
+        width: 506px;
+        text-align: center;
+        margin: 20px auto 0;
+        font-size: 28px;
+        color: #252525;
+        line-height: 40px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .ewm{
+        display: block;
+        margin: 552px auto 12px;
+        width: 206px;
+        height: 206px;
+      }
+      .txt{
+        width: 692px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 28px;
+        color: #252525;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- miniUrl, avatarUrl, siteName, -->
+    <div class='code-wrap'>
+      <img class='avt' src='{{avatarUrl}}' />
+      <div class='site'>提货点：{{siteName}}</div>
+      <img class='ewm' src='{{miniUrl}}' />
+      <div class='txt'>扫码选购</div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

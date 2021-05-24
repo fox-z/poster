@@ -1,0 +1,209 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      @media print {
+        .tr {
+          page-break-inside: avoid;
+          page-break-after: avoid;
+          page-break-before: avoid;
+        }
+      }
+      .pdf-wrap{
+        width: 794px;
+        height: auto;
+        color: #252525;
+        background-color: #999;
+      }
+      .pdf-one{
+        padding: 0 46px;
+      }
+      .act-title{
+        text-align: center;
+        font-size: 26px;
+        line-height: 37px;
+        font-weight: 600;
+      }
+      .common-area{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+      }
+      .area-lt{
+        flex: 1;
+        font-size: 16px;
+      }
+      .area-rt{
+        flex: none;
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .info-item{
+        margin-top: 20px;
+        line-height: 22px;
+        text-align: left;
+      }
+      .ewm{
+        width: 120px;
+        height: 120px;
+      }
+      .tit{
+        margin-top: 10px;
+        font-size: 20px;
+        line-height: 28px;
+      }
+      .num {
+        margin-top: 5px;
+        font-size: 30px;
+        line-height: 42px;
+      }
+
+      .list-wrap{
+        margin: 20px auto 0;
+        width: 700px;
+      }
+      .table{
+      }
+      .tr{
+        display: flex;
+        width: 100%;
+        border: 1px solid #252525;
+        margin-top: -1px;
+      }
+      .td{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40px;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        border-right: 1px solid #252525;
+        overflow: hidden;
+      }
+      .td-1{
+        width: 150px;
+      }
+      .td-2{
+        width: 400px;
+      }
+      .td-3{
+        width: 150px;
+        border-right: 0 none;
+      }
+      .footer{
+        margin-top: 20px;
+      }
+      .footer-item{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
+        line-height: 22px;
+        font-size: 16px;
+      }
+      .item-gd{
+        width: 170px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <!-- currentPage: index + 1,
+    pageCount: organizerList.length,
+    sum,
+    url,
+    activityName,
+    orderEndTime,
+    orderStartTime,
+    organizerAddress, // 团长地址
+    organizerCountryRegion, // 团长所在区
+    organizerMobile, // 团长手机
+    organizerName, // 团长名称
+    routeName, // 线路名称
+    shopper, // 配送员
+    shopperPhone, // 配送员电话
+    nowTime,
+    itemList, // 商品信息
+
+    itemName: '商品名称',
+    itemNumber: '商品货号',
+    itemSpec: '商品规格',
+    quantity: 11, -->
+  
+    <!-- A4纸的尺寸的图像的像素是595×842 -->
+    <div class='pdf-wrap'>
+      <div class="pdf-one">
+        <div class="act-title">【{{activityName}}】- 配送单({{currentPage}}/{{pageCount}})</div>
+        <div class="act-title">【{{routeName}}】-【{{organizerCountryRegion}}】- 【{{collectionSiteName}}】 -【{{organizerName}}】</div>
+        <div class="common-area">
+          <div class="area-lt">
+            <div class="info-item">
+              <span>团长：</span><span>{{organizerName}}({{organizerMobile}})</span>
+            </div>
+            <div class="info-item">
+              <span>团长地址：</span><span>{{organizerAddress}}</span>
+            </div>
+            <div class="info-item">
+              <span>配货员信息：</span><span>{{shopper}}({{shopperPhone}})</span>
+            </div>
+            <div class="info-item">
+              <span>发货订单时间范围：</span><span>{{ orderStartTime }} - {{ orderEndTime }}</span>
+            </div>
+            <div class="info-item">
+              <span>收货明细</span>
+            </div>
+          </div>
+          <div class="area-rt">
+            <!-- <div class="ewm">
+              {{url}}
+            </div> -->
+            <img src="{{url}}" class="ewm" />
+            <div class="tit">团长序号</div>
+            <div class="num">{{organizerSort}}</div>
+          </div>
+        </div>
+
+        <div class="list-wrap">
+          <div class="table">
+            <div class="t-head">
+              <div class="tr">
+                <div class="td td-1">商品货号</div>
+                <div class="td td-2">商品名称</div>
+                <div class="td td-3">商品数量</div>
+              </div>
+            </div>
+
+            <div class="t-body">
+              {% for item in itemList %}
+              <div class="tr">
+                <div class="td td-1">{{item.itemNumber}}</div>
+                <div class="td td-2">{{item.itemName}}({{item.itemSpec}})</div>
+                <div class="td td-3">{{item.quantity}}</div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="t-foot">
+              <div class="tr">
+                <div class="td td-1">总计</div>
+                <div class="td td-2"></div>
+                <div class="td td-3">{{sum}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footer-item">
+            <span>打印时间：</span><span class="item-gd">{{nowTime}}</span>
+          </div>
+          <div class="footer-item">
+            <span>收货确认：</span><span class="item-gd"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

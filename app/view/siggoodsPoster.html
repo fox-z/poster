@@ -1,0 +1,199 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .singleBill{
+        width: 576px;
+        height: 1000px;
+        padding: 24px;
+        background-color: #fff;
+      }
+
+      .imgContent{
+        width: 528px;
+        height: 788px;
+        background: #FF4444;
+        border-radius: 8px; 
+        padding: 20px; 
+      }
+
+      .goodsImg {
+        width: 488px;
+        height: 488px;
+        border-radius: 8px 8px 0px 0px; 
+      }
+
+      .goodsDetail {
+          height: 192px;
+          width: 488px;
+          background: #fff;
+         border-radius:0 0 8px 8px;
+      }
+
+      .goodsName {
+        height: 92px;
+        font-size: 24px;
+        line-height: 40px;
+        padding: 20px 20px 0;
+        color: #252525;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      /* .tag {
+        width: 88px;
+        height: 26px;
+        font-size: 18px;
+        color: #FFFFFF; 
+        background: #FF4444;
+        border-radius: 4px; 
+        text-align: center;
+        line-height: 26px;
+        display: inline-block;
+        margin-right: 8px;
+      } */
+      .tag{
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 8px;
+        background: #FF4444;
+        border-radius: 4px;
+        font-size: 18px;
+        color: #FFFFFF;
+        margin-right: 8px;
+      }
+
+      .priceContent {
+          height: 56px;
+          margin-top: 24px;
+          display: flex;
+          align-items: center;
+          padding-left: 20px;
+      }
+
+      .price {
+        font-weight: 600;
+        color: #FF4444;
+        font-size: 40px;
+        margin-right: 8px;
+      }
+
+      .seckillIcon {
+          width: 70px;
+          height: 30px;
+          margin-right: 20px;
+      }
+
+      .market {
+        color: rgba(37, 37, 37, 0.5);   
+        font-size: 20px;
+        text-decoration: line-through;
+      }
+
+      .priceText {
+        font-size: 20px;
+        color: #FF4444;
+        margin-right: 4px;
+      }
+
+      .noRecord {
+        color: #FFFFFF;
+        font-size: 24px;
+        height: 68px;
+        padding-top: 28px;
+      }
+
+      .moreRecord {
+          height: 68px;
+          display: flex;
+          align-items: flex-end;
+      }
+
+      .avtar {
+        width: 48px;
+        height: 48px;
+        border: 2px solid #FFFFFF;
+        border-radius: 50%;
+        margin-left: -8px;
+        position: relative;
+      }
+      .avtar:first-child {
+          margin-left: 0;
+      }
+
+      .recordText {
+        font-size: 24px;       
+        color: #FFFFFF; 
+        margin-bottom: 6px;
+        margin-left: 16px;
+      }
+
+      .singleBottom {
+          margin-top:24px;
+          height: 140px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .miniImg {
+          width: 140px;
+          height: 140px;
+      }
+
+      .bottomText {
+        margin-left: 20px;
+      }
+
+      .copyText {
+        font-size: 22px;
+        color: #FF4444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='singleBill'>
+      <div class="imgContent">
+        <img class='goodsImg' src="{{groupInfo.img}}" />
+        <div class="goodsDetail">
+           <div class="goodsName">
+            {% if groupInfo.activityTag %}<span class="tag">{{groupInfo.activityTag}}</span>{% endif %}{{groupInfo.name}} {% if groupInfo.minSpec %}{{groupInfo.minSpec}}{% endif %}
+           </div>
+           <div class="priceContent">
+              {% if groupInfo.isSecKill == false %}
+               <div class="priceText">限时特价</div>
+              {% endif %}
+               <div class="price">¥{{groupInfo.preferPriceText}}</div>
+               {% if groupInfo.isSecKill == true %}
+               <img class='seckillIcon' src="http://bw-online-img.oss-cn-hangzhou.aliyuncs.com/qr/seckillIcon.png" />
+               {% endif %}
+               <div class="market">¥{{groupInfo.marketPriceText}}</div>
+           </div>
+        </div>
+        {% if buyRecordList.length %}
+        <div class="moreRecord">
+          {% for record in buyRecordList %}
+          <img class="avtar" src='{{record.avatarUrl}}'/>
+          {% endfor %}
+          <div class="recordText">等{{groupInfo.salesCount}}人已跟团购买</div>
+        </div>
+        {% else %}
+        <div class="noRecord">一大波人正在赶来～</div>
+        {% endif %}
+      </div>
+      <div class="singleBottom">
+        <img class="miniImg" src='{{groupInfo.ewmBase64}}'/>
+        <div class="bottomText">
+          <!-- <div class="time">
+            {% if groupInfo.isSecKill %}秒杀{% endif %}{{groupInfo.timeStr}}
+          </div> -->
+          <div class="copyText">长按识别小程序码参团</div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

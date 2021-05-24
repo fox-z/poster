@@ -1,0 +1,57 @@
+{
+  "name": "poster",
+  "version": "1.0.0",
+  "description": "海报服务: 提供海报静态页面，在页面截图，输出图片",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "compressing": "^1.5.1",
+    "crypto-js": "^4.0.0",
+    "dayjs": "^1.8.34",
+    "egg": "^2.15.1",
+    "egg-oss": "^2.0.0",
+    "egg-scripts": "^2.11.0",
+    "egg-view-nunjucks": "^2.2.0",
+    "generic-pool": "^3.7.1",
+    "pdf-merge": "^1.2.0",
+    "puppeteer-core": "^5.2.0",
+    "qr-image": "^3.2.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start-dev": "egg-scripts start --title=egg-server-poster --daemon --workers=1 --env=dev",
+    "start-test": "egg-scripts start --title=egg-server-poster --workers=1 --env=test",
+    "start": "egg-scripts start --title=egg-server-poster --workers=4 --env=prod",
+    "stop": "egg-scripts stop --title=egg-server-poster",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.bluewhale365.com:FrontEnd/bluewhale-poster.git"
+  },
+  "author": "yichan",
+  "license": "MIT"
+}

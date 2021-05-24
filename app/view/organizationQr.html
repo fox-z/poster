@@ -1,0 +1,109 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .organizition-wrap{
+        position: relative;
+        width: 375px;
+        height: 480px;
+      }
+      .bg-img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .bt-box{
+        position: relative;
+        width: 375px;
+        height: 480px;
+      }
+      .ewm-box{
+        position: absolute;
+        top: 132px;
+        left: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 232px;
+        height: 232px;
+        z-index: 1;
+      }
+      .ewm{
+        width: 232px;
+        height: 232px;
+      }
+      .ewm-bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 232px;
+        height: 232px;
+      }
+      .avt-btn{
+        position: absolute;
+        bottom: 33px;
+        left: 58px;
+        display: flex;
+        align-items: center;
+        width: 260px;
+        height: 64px;
+        padding: 3px;
+        background-color: #DA2020;
+        border-radius: 32px;
+      }
+      .avat{
+        flex: none;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .info{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 7px 0 7px 10px;
+        overflow: hidden;
+      }
+      .nick{
+        font-size: 13px;
+        color: #FFFFFF;
+        line-height: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .tips{
+        margin-top: 4px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #FFFFFF;
+        line-height: 22px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- miniUrl, avatarUrl, descOrganizeTemplate, nickName, -->
+    <div class='organizition-wrap'>
+      <img class="bg-img" src="http://bw-online-img.oss-cn-hangzhou.aliyuncs.com/qr/organizition-qr-bg.png" />
+      <div class="bt-box">
+        <div class="ewm-box">
+          <img class="ewm" src="{{miniUrl}}" />
+          <img class="ewm-bg" src="http://bw-online-img.oss-cn-hangzhou.aliyuncs.com/qr/orgn-qr-bg2.png">
+        </div>
+        <div class="avt-btn">
+          <img class="avat" src="{{avatarUrl}}" />
+          <div class="info">
+            <div class="nick">{{nickName}}</div>
+            <div class="tips">{{descOrganizeTemplate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

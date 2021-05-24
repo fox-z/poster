@@ -1,0 +1,243 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      @media print {
+        td {
+          page-break-inside: avoid;
+        }
+      }
+      .pdf-wrap{
+        width: 794px;
+        height: auto;
+        color: #252525;
+        background-color: #999;
+      }
+      .pdf-one{
+      }
+      .act-title{
+        width: 493px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 26px;
+        line-height: 37px;
+        font-weight: 600;
+      }
+      .common-area{
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 46px 0;
+      }
+      .area-lt{
+        flex: 1;
+        font-size: 16px;
+      }
+      .area-rt{
+        flex: none;
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .info-item{
+        margin-top: 20px;
+        line-height: 22px;
+        text-align: left;
+      }
+      .tit{
+        font-size: 20px;
+        line-height: 28px;
+      }
+      .num {
+        margin-top: 5px;
+        font-size: 30px;
+        line-height: 42px;
+      }
+
+      .list-wrap{
+        margin: 20px auto 0;
+        width: 740px;
+      }
+      table{
+        width: 740px;
+      }
+      table,
+      table tr th,
+      table tr td {
+        border: 1px solid #252525;
+      }
+      table tr th,
+      table tr td {
+        text-align: center;
+        height: 40px;
+        font-size: 14px;
+      }
+      .td-cn{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .td-1{
+        width: 80px;
+      }
+      .td-2{
+        width: 120px;
+      }
+      .td-3{
+        width: 357px;
+      }
+      .td-4{
+        width: 82px;
+      }
+      .td-5{
+        width: 100px;
+      }
+
+      .footer{
+        padding: 20px 0;
+      }
+      .footer-item{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
+        line-height: 22px;
+        font-size: 16px;
+      }
+      .item-gd{
+        width: 170px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <!-- currentPage: index + 1,
+    pageCount: organizerList.length,
+    activityName,
+    orderEndTime,
+    orderStartTime,
+    collectionSiteName,
+    organizerAddress, // 团长地址
+    organizerCountryRegion, // 团长所在区
+    organizerMobile, // 团长手机
+    organizerName, // 团长名称
+    organizerSort, // 团长序号
+    buyerList, // 商品信息
+
+    buyerList =>
+    index
+    buyerMobile
+    buyerName
+    itemList: {
+      itemName,
+      quantity
+    } -->
+  
+    <!-- A4纸的尺寸的图像的像素是595×842 -->
+    <div class='pdf-wrap'>
+      <div class="pdf-one">
+        <div class="act-title">【{{collectionSiteName}} ({{organizerName}})】- 提货单({{currentPage}}/{{pageCount}})</div>
+        <div class="common-area">
+          <div class="area-lt">
+            <div class="info-item">
+              <span>团长：</span><span>{{organizerName}}({{organizerMobile}})</span>
+            </div>
+            <div class="info-item">
+              <span>团长地址：</span><span>{{organizerAddress}}</span>
+            </div>
+            <div class="info-item">
+              <span>发货订单时间范围：</span><span>{{ orderStartTime }} - {{ orderEndTime }}</span>
+            </div>
+            <div class="info-item">
+              <span>收货明细</span>
+            </div>
+          </div>
+          <div class="area-rt">
+            <div class="tit">团长序号</div>
+            <div class="num">{{organizerSort}}</div>
+          </div>
+        </div>
+
+        <div class="list-wrap">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="td-1">序号</th>
+                <th class="td-2">团员信息</th>
+                <th class="td-3">商品名称</th>
+                <th class="td-4">数量</th>
+                <th class="td-5">提货签字</th>
+              </tr>
+              {% for item in buyerList %}
+                {% for goods in item.itemList %}
+                {% if loop.first %}
+                <tr>
+                  <td rowspan="{{loop.length}}">
+                    <div class="td-cn">{{item.index}}</div>
+                  </td>
+                  <td rowspan="{{loop.length}}">
+                    <div class="td-cn">
+                      <div class="">{{item.buyerName}}</div>
+                      <div class="">{{item.buyerMobile}}</div>
+                    </div>
+                  </td>
+                  <td>{{goods.itemName}}({{goods.itemSpec}})</td>
+                  <td>{{goods.quantity}}</td>
+                  <td rowspan="{{loop.length}}"></td>
+                </tr>
+                {% else %}
+                <tr>
+                  <td>{{goods.itemName}}({{goods.itemSpec}})</td>
+                  <td>{{goods.quantity}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- <div class="table">
+            <div class="t-head">
+              <div class="tr">
+                <div class="td td-1">序号</div>
+                <div class="td td-2">团员信息</div>
+                <div class="td td-3">商品名称</div>
+                <div class="td td-4">数量</div>
+                <div class="td td-5">提货签字</div>
+              </div>
+            </div>
+
+            <div class="t-body">
+              {% for item in buyerList %}
+              <div class="tr">
+                <div class="td td-1">{{loop.index}}</div>
+                <div class="td td-2">
+                  <div class="">{{item.buyerName}}</div>
+                  <div class="">{{item.buyerMobile}}</div>
+                </div>
+                <div class="td td-3">
+                  {% for goods in item.itemList %}
+                    <div class="goods">{{goods.itemName}}({{goods.itemSpec}})</div>
+                  {% endfor %}
+                </div>
+                <div class="td td-4">
+                  {% for goods in item.itemList %}
+                    <div class="goods">{{goods.quantity}}</div>
+                  {% endfor %}
+                </div>
+                <div class="td td-5"></div>
+              </div>
+              {% endfor %}
+            </div>
+          </div> -->
+        </div>
+
+        <div class="footer">
+          <div class="footer-item">
+            <span>打印时间：</span><span class="item-gd">{{nowTime}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

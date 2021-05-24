@@ -1,0 +1,51 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .goods-card{
+        position: relative;
+        width: 500px;
+        height: 400px;
+        background: url('https://img1.huopin360.com/miniprogram/groupBuying/group-share-bg.png') center no-repeat;
+        background-size: 100% 100%;
+        display: flex;
+      }
+      .img-box{
+        width: 272px;
+        height: 272px;
+        margin-left: 10px;
+        overflow: hidden;
+      }
+      .img{
+        display: block;
+        width: 272px;
+      }
+      .price-box{
+        display: flex;
+        align-items: flex-start;
+        margin: 62px 0 0 20px;
+      }
+      .pre{
+        margin-top: 18px;
+        font-size: 28px;
+        color: #ff4444;
+        line-height: 40px;
+      }
+      .num{
+        font-size: 48px;
+        font-weight: 600;
+        color: #ff4444;
+        line-height: 66px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="goods-card">
+      <div class="img-box">
+        <img class="img" src={{img}} />
+      </div>
+      <div class="price-box">
+        <div class="pre">¥</div>
+        <div class="num">{{price}}</div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

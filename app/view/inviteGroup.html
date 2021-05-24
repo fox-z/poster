@@ -1,0 +1,92 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .invite-group{
+        width: 750px;
+        max-height: 1324px;
+      }
+      .top{
+        position: relative;
+        max-height: 1072px;
+      }
+      .bg{
+        width: 100%;
+      }
+      .avt-name{
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .avt{
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        border: 4px solid #FFFFFF;
+      }
+      .name{
+        margin-top: 16px;
+        width: 396px;
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        color: #FFFFFF;
+        line-height: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .btm{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 70px 0 120px;
+        height: 262px;
+        background-color: #fff;
+      }
+      .bt-lt{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .logo{
+        width: 284px;
+        height: 92px;
+      }
+      .txt{
+        margin-top: 16px;
+        font-size: 22px;
+        color: #252525;
+        line-height: 32px;
+      }
+      .ewm{
+        width: 180px;
+        height: 180px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invite-group">
+      <div class="top">
+        <img src="{{bgImg}}" class="bg" alt=" ">
+        <div class="avt-name">
+          <img class="avt" src="{{avatarUrl}}" />
+          <div class="name">{{nickName}}</div>
+        </div>
+      </div>
+      <div class="btm">
+        <div class="bt-lt">
+          <img src="https://img1.huopin360.com/miniprogram/orgainzer/orgz-invite-logo-poster.png" class="logo" alt=" ">
+          <div class="txt">识别小程序码，快速入驻</div>
+        </div>
+        <div class="bt-rt">
+          <img src="{{ewmBase64}}" class="ewm" alt=" ">
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

@@ -1,0 +1,119 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .group-record{
+        width: 500px;
+        height: 400px;
+        background-color: #fff;
+      }
+
+      .group-cont{
+        height: 230px;
+      }
+      .group-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 46px;
+        padding: 0 10px;
+      }
+      .item-left{
+        display: flex;
+        align-items: center;
+      }
+      .index{
+        font-size: 20px;
+        font-weight: 600;
+        color:rgba(37,37,37,0.5);
+      }
+      .avtar{
+        width: 34px;
+        height: 34px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border:1px solid rgba(255,255,255,1);
+      }
+      .nick{
+        max-width: 110px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /* font-family: 'PingFang SC'; */
+        font-size: 22px;
+        color: rgba(37, 37, 37, 1);
+      }
+      .time{
+        margin: 0 0 0 10px;
+        font-size: 18px;
+        color: rgba(37, 37, 37, 0.5);
+      }
+      .item-right{
+        display: flex;
+        align-items: center;
+      }
+      .name{
+        max-width: 180px;
+        font-size: 22px;
+        text-align: right;
+        color: rgba(37, 37, 37, 1);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .count{
+        text-align: right;
+        font-size: 22px;
+        color: #ff4444;
+      }
+
+      .tips{
+        padding: 24px 10px;
+        font-size:24px;
+        font-weight: 600;
+        color:rgba(255,68,68,1);
+        line-height:34px;
+      }
+
+      .btn-wrap{
+        padding: 0 10px 4px;
+        height: 84px;
+      }
+      .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 84px;
+        border-radius: 42px;
+        font-size: 40px;
+        color:rgba(255,255,255,1);
+        background-color: #ff4444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='group-record'>
+      <div class='group-cont'>
+        {% for record in buyerRecord %}
+        <div class='group-item'>
+          <div class='item-left'>
+            <!-- <div class='index'>{{record.participateNo}}</div> -->
+            <img class='avtar' src="{{record.userFig}}" />
+            <div class='nick'>{{record.nickname}}</div>
+            <div class='time'>{{record.timeStr}}</div>
+          </div>
+          <div class='item-right'>
+            <div class='name'>{{record.itemName}}</div>
+            <div class='count'>+{{record.quantity}}件</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class='tips'>正在跟团中</div>
+      <div class='btn-wrap'>
+        <div class='btn'>
+          ¥{{minItemPrice}}起 跟团购买
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

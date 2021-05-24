@@ -1,0 +1,85 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .new-goods-card{
+        position: relative;
+        width: 500px;
+        height: 400px;
+        background: url('https://img1.huopin360.com/miniprogram/yx-home/yx-new-goods-bg.png') center no-repeat;
+        background-size: 100% 100%;
+      }
+      .goods-box{
+        position: absolute;
+        top: 154px;
+        left: 39px;
+        display: flex;
+        justify-content: center;
+        width: 438px;
+        height: 180px;
+      }
+      .goods-item{
+        flex: none;
+        width: 130px;
+        margin-right: 16px;
+      }
+      .img-box{
+        width: 130px;
+        height: 130px;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .img{
+        display: block;
+        width: 130px;
+        height: 130px;
+      }
+      .price-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+      }
+      .pre{
+        margin-top: 7px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #FF4444;
+        line-height: 17px;
+      }
+      .num{
+        font-size: 26px;
+        font-weight: bold;
+        color: #FF4444;
+        line-height: 24px;
+      }
+      .next{
+        margin-top: 7px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #FF4444;
+        line-height: 17px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- itemList: [{ img, price, pricePre, priceNext }] -->
+    <div class="new-goods-card">
+      <div class="goods-box">
+        {% for item in itemList %}
+          <div class="goods-item">
+            <div class="img-box">
+              <img class="img" src='{{item.img}}' />
+            </div>
+            <div class="price-box">
+              <div class="pre">¥</div>
+              <div class="num">{{item.pricePre}}</div>
+              {% if item.priceNext %}
+              <div class="next">{{item.priceNext}}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

@@ -1,0 +1,108 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .goods-card{
+        position: relative;
+        width: 500px;
+        height: 400px;
+        background: url('https://img1.huopin360.com/miniprogram/groupBuying/yx-thousand-share-bg.png') center no-repeat;
+        background-size: 100% 100%;
+        overflow: hidden;
+      }
+      .content{
+        display: flex;
+        width: 458px;
+        height: 260px;
+        margin: 113px 0 0 23px;
+      }
+      .img-box{
+        flex: none;
+        width: 260px;
+        height: 260px;
+        border-radius: 4px 4px;
+        overflow: hidden;
+      }
+      .img{
+        display: block;
+        width: 260px;
+      }
+      .goods-box{
+        padding: 43px 0 0 7px;
+      }
+      .price-box{
+        flex: 1;
+        display: flex;
+      }
+      .price{
+        /* word-spacing: -4px; */
+      }
+      .pre{
+        font-size: 26px;
+        font-weight: bold;
+        color: #FF4444;
+        line-height: 30px;
+      }
+      .txt{
+        font-size: 42px;
+        font-weight: bold;
+        color: #FF4444;
+        line-height: 58px;
+      }
+      .next{
+        font-size: 14px;
+        font-weight: bold;
+        color: #FF4444;
+        line-height: 30px;
+      }
+      .del-price{
+        margin: 33px 0 0 4px;
+        font-size: 14px;
+        color: rgba(37, 37, 37, 0.5);
+        line-height: 25px;
+        text-decoration: line-through;
+      }
+      .goods-name{
+        margin-top: 2px;
+        font-size: 16px;
+        color: rgba(37, 37, 37, 0.8);
+        line-height: 22px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      groupNum,
+      seckillHour,
+      marketPriceText,
+      img,
+      itemName,
+      price,
+      type 1 普通商品卡片 3 拼团商品卡片 5 限时秒杀商品卡片 7 万人团卡片
+    -->
+    <div class="goods-card">
+      <div class="content">
+        <div class="img-box">
+          <img class="img" src={{img}} />
+        </div>
+        <div class="goods-box">
+          <div class="price-box">
+            <div class="price">
+              <span class="pre">¥</span>
+              <span class="txt">{{priceInt}}</span>
+              {% if priceDot %}
+              <span class="next">.{{priceDot}}</span>
+              {% endif %}
+            </div>
+            <div class="del-price">¥{{marketPriceText}}</div>
+          </div>
+          <div class="goods-name">{{itemName}}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}

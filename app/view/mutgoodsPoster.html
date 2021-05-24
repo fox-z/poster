@@ -1,0 +1,189 @@
+{% include "./common/header.html" %}
+    <style type="text/css">
+      .mut-goods-poster{
+        width: 576px;
+        height: 904px;
+        padding: 0 24px;
+        background-color: #fff;
+      }
+      .goods-head{
+        display: flex;
+        padding: 16px 0;
+      }
+      .avatur{
+        flex: none;
+        width: 84px;
+        height: 84px;
+        margin-right: 20px;
+        border-radius: 50%;
+      }
+      .site-box{
+        width: 424px;
+      }
+      .site{
+        font-size: 20px;
+        color: rgba(37, 37, 37, 0.7);
+        line-height: 28px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .tips{
+        font-size: 24px;
+        font-weight: 600;
+        color: #252525;
+        line-height: 34px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        word-break: break-all;
+        text-overflow: ellipsis;
+      }
+      .list-wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 528px;
+        height: 580px;
+        background: #FF4444;
+        border-radius: 8px;
+      }
+      .list{
+        width: 488px;
+        height: 540px;
+        border-radius: 8px;
+        background-color: #fff;
+      }
+      .item{
+        display: flex;
+        width: 100%;
+        height: 180px;
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+      }
+      .item:last-child{
+        border-bottom: 0 none;
+      }
+      .img{
+        flex: none;
+        width: 140px;
+        height: 140px;
+      }
+      .goods-info{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 20px;
+      }
+      .tit{
+        width: 280px;
+        font-size: 24px;
+        color: #252525;
+        line-height: 34px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        word-break: break-all;
+        text-overflow: ellipsis;
+      }
+      .tag{
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 8px;
+        background: #FF4444;
+        border-radius: 4px;
+        font-size: 18px;
+        color: #FFFFFF;
+        margin-right: 8px;
+      }
+      .price-box{
+        display: flex;
+        align-items: flex-start;
+        font-size: 20px;
+      }
+      .pre{
+        color: #FF4444;
+        line-height: 28px;
+        margin: 10px 4px 0 0;
+      }
+      .num{
+        font-size: 32px;
+        font-weight: 600;
+        color: #FF4444;
+        line-height: 44px;
+        margin-right: 8px;
+      }
+      .del{
+        margin-top: 10px;
+        color: rgba(37, 37, 37, 0.5);
+        text-decoration: line-through;
+      }
+
+      .goods-foot{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px 0;
+      }
+      .ewm{
+        flex: none;
+        width: 140px;
+        height: 140px;
+        margin-right: 20px;
+      }
+      .foot-rt{
+      }
+      .touch{
+        font-size: 22px;
+        color: #FF4444;
+        line-height: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='mut-goods-poster'>
+      <div class="goods-head">
+        <img src="{{groupInfo.avatarUrl}}" class="avatur" alt=" ">
+        <div class="site-box">
+          <div class="site">{{groupInfo.addressDetail}}</div>
+          <div class="tips">我在 {{groupInfo.addressDetail}} 发现了一个超划算的团购</div>
+        </div>
+      </div>
+
+      <div class="list-wrap">
+        <div class="list">
+          {% for item in goodsList %}
+          <div class="item">
+            <img class="img" src="{{item.img}}" alt=" ">
+            <div class="goods-info">
+              <div class="tit">
+                {% if item.activityTag %}
+                <span class="tag">{{item.activityTag}}</span>
+                {% endif %}<span>{{item.name}}</span>{% if item.minSpec %}<span> {{item.minSpec}}</span>
+                {% endif %}
+              </div>
+              <div class="price-box">
+                <span class="pre">限时特价</span>
+                <span class="num">¥{{item.preferPriceText}}</span>
+                <span class="del">¥{{item.marketPriceText}}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="goods-foot">
+        <img src="{{ groupInfo.ewmBase64 }}" class="ewm" alt=" ">
+        <div class="foot-rt">
+          <!-- <div class="time">{{ groupInfo.timeStr }}</div> -->
+          <div class="touch">长按识别小程序码参团</div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% include "./common/footer.html" %}
